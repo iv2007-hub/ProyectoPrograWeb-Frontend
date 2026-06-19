@@ -1,0 +1,53 @@
+/* Centramos el contenido y le damos un ancho máximo para que no se vea
+   demasiado ancho en pantallas grandes */
+.experiments-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-card {
+  margin-bottom: 30px;
+  padding: 10px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.error {
+  color: red;
+  font-size: 14px;
+}
+
+.empty {
+  color: gray;
+  text-align: center;
+}
+
+.experiment-item {
+  margin-bottom: 10px;
+}
+
+.experiment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icon-success {
+  color: green;
+}
+
+.icon-fail {
+  color: red;
+}

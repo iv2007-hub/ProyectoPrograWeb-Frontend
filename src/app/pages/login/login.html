@@ -1,0 +1,29 @@
+<div class="login-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title> Iniciar Sesion </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label> Email </mat-label>
+        <input matInput type="email" [(ngModel)]="email" placeholder="tu@email.com">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label> Contraseña </mat-label>
+        <input matInput type="password" [(ngModel)]="password" placeholder="*********">
+      </mat-form-field>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onLogin()" [disabled]="isLoading">
+        {{ isLoading ? "Entrando..." : "Iniciar Sesion" }}
+      </button>
+
+      <a routerLink="/register">¿No tienes cuenta? Registrate</a>
+    </mat-card-actions>
+  </mat-card>
+</div>

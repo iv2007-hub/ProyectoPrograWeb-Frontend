@@ -1,0 +1,81 @@
+<div class="experiments-container">
+
+  <!-- Encabezado con título y botón de cerrar sesión -->
+  <div class="header">
+    <h1>Mis Experimentos</h1>
+    <button mat-raised-button color="warn" (click)="onLogout()">
+      Cerrar sesión
+    </button>
+  </div>
+
+  <!-- Tarjeta con el formulario para crear un experimento nuevo -->
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>Nuevo experimento</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput type="text" [(ngModel)]="title" placeholder="¿Qué probaste?" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Resultado</mat-label>
+        <!--
+          textarea en lugar de input porque el resultado puede ser más largo
+          rows="3" le da una altura inicial de 3 líneas
+        -->
+        <textarea matInput rows="3" [(ngModel)]="result" placeholder="¿Qué pasó?"></textarea>
+      </mat-form-field>
+
+      <!--
+        mat-checkbox es el checkbox de Angular Material
+        [(ngModel)] funciona igual que en los inputs — conecta el estado
+        del checkbox con la variable "success"
+      -->
+      <mat-checkbox [(ngModel)]="success">¿Funcionó?</mat-checkbox>
+
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </mat-card-content>
+
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onCreate()" [disabled]="isLoading">
+        {{ isLoading ? 'Guardando...' : 'Crear experimento' }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+
+  <!-- Lista de experimentos existentes -->
+  <h2>Historial</h2>
+
+  <!--
+    Si no hay experimentos, mostramos un mensaje amigable
+    *ngIf="experiments.length === 0" se cumple cuando el arreglo está vacío
+  -->
+  <p *ngIf="experiments.length === 0" class="empty">
+    Aún no tienes experimentos registrados.
+  </p>
+
+  <mat-card *ngFor="let exp of experiments" class="experiment-item">
+    <mat-card-content>
+      <div class="experiment-header">
+        <h3>{{ exp.title }}</h3>
+        <!--
+          mat-icon muestra un ícono. Cambiamos el ícono y la clase CSS
+          según si el experimento tuvo éxito o no
+        -->
+        <mat-icon [class]="exp.success ? 'icon-success' : 'icon-fail'">
+          {{ exp.success ? 'check_circle' : 'cancel' }}
+        </mat-icon>
+      </div>
+      <p>{{ exp.result }}</p>
+      <!--
+        | date es un "pipe" de Angular — transforma el dato antes de mostrarlo
+        En este caso convierte la fecha ISO en un formato legible
+      -->
+      <small>{{ exp.createdAt | date:'short' }}</small>
+    </mat-card-content>
+  </mat-card>
+
+</div>
