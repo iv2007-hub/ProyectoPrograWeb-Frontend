@@ -1,12 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { DeliveryService } from '../../../services/delivery.service';
 import { DeliveryRecord } from '../../../models/delivery.model';
 
 @Component({
   selector: 'app-delivery-audit-log',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './delivery-audit-log.html',
   styleUrl: './delivery-audit-log.css',
 })
