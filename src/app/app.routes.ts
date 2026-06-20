@@ -8,12 +8,13 @@ import { ExperimentsComponent } from './pages/experiments/experiments';
 import { ReceiverDashboard } from './pages/receiver/receiver-dashboard/receiver-dashboard';
 import { DonorDashboard } from './pages/donor/donor-dashboard/donor-dashboard';
 import { AdminDashboard } from './pages/admin/admin-dashboard/admin-dashboard';
+import { LandingComponent } from './pages/landing/landing';
 import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
-  // Cuando la URL está vacía (la raíz del sitio), redirigimos a /login
+  // Cuando la URL está vacía (la raíz del sitio), redirigimos a landing
   // pathMatch: 'full' significa que solo aplica si la URL está completamente vacía
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', component: LandingComponent },
 
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },

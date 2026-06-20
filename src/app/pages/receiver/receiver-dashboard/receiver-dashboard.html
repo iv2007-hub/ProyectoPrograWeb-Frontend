@@ -1,1 +1,105 @@
-<p>receiver-dashboard works!</p>
+<div class="dashboard-container">
+  <div class="header">
+    <h1>DonaCerca</h1>
+    <button mat-raised-button color="warn" (click)="onLogout()">Cerrar Sesión</button>
+  </div>
+
+  <mat-tab-group (selectedTabChange)="onTabChange($event)">
+
+    <mat-tab label="Catálogo">
+      <div class="tab-content">
+        <div class="filters">
+          <mat-form-field appearance="outline">
+            <mat-label>Categoría</mat-label>
+            <mat-select [(ngModel)]="selectedCategory" (ngModelChange)="applyFilters()">
+              <mat-option value="">Todas</mat-option>
+              <mat-option *ngFor="let cat of categories" [value]="cat.name">{{ cat.name }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Zona</mat-label>
+            <input matInput [(ngModel)]="selectedZone" (ngModelChange)="applyFilters()" placeholder="Ej: Tegucigalpa">
+          </mat-form-field>
+        </div>
+
+        <div *ngIf="isLoading">Cargando artículos...</div>
+        <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+        <div class="catalog-grid" *ngIf="!isLoading && !errorMessage">
+          <mat-card *ngFor="let item of filteredDonations" class="donation-card">
+            <mat-card-header>
+              <mat-card-title>{{ item.itemName }}</mat-card-title>
+              <mat-card-subtitle>{{ item.categoryName }} · {{ item.zone }}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{ item.description }}</p>
+              <p><strong>Estado:</strong> {{ item.itemCondition }}</p>
+              <p><strong>Donante:</strong> {{ item.donorName }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-button (click)="onVerDetalle(item)">Ver Detalle</button>
+              <button mat-raised-button
+                      [color]="hasSolicited(item.id) ? '' : 'primary'"
+                      [disabled]="hasSolicited(item.id)"
+                      (click)="onSolicitar(item.id)">
+                {{ hasSolicited(item.id) ? 'Pendiente' : 'Solicitar' }}
+              </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Mis Solicitudes">
+      <div class="tab-content">
+        <div *ngIf="myRequests.length === 0">No tienes solicitudes activas.</div>
+        <mat-card *ngFor="let request of myRequests" class="donation-card">
+          <mat-card-header>
+            <mat-card-title>{{ postNames[request.postId] || request.postId }}</mat-card-title>
+            <mat-card-subtitle>
+              <span [ngClass]="{
+                'status-pendiente': request.status === 'pendiente',
+                'status-aceptada': request.status === 'aceptada',
+                'status-rechazada': request.status === 'rechazada',
+                'status-recibida': request.status === 'recibida'
+              }">{{ request.status }}</span>
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p><strong>Fecha:</strong> {{ request.requestTimestamp | date:'dd/MM/yyyy' }}</p>
+          </mat-card-content>
+          <mat-card-actions *ngIf="request.status === 'aceptada'">
+            <button mat-raised-button color="primary" (click)="onConfirmarRecepcion(request.id)">
+              Confirmar Recepción
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        Notificaciones
+        <span *ngIf="hasUnreadNotifications"
+              matBadge="!"
+              matBadgeColor="warn"
+              matBadgeSize="small"
+              style="margin-left: 8px">
+        </span>
+      </ng-template>
+      <div class="tab-content">
+        <div *ngIf="notifications.length === 0">No tienes notificaciones.</div>
+        <mat-card *ngFor="let notif of notifications" class="donation-card">
+          <mat-card-header>
+            <mat-card-title>{{ notif.type === 'entrega_coordinada' ? 'Entrega Coordinada' : notif.type }}</mat-card-title>
+            <mat-card-subtitle>{{ notif.createdAt | date:'dd/MM/yyyy HH:mm' }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>{{ notif.message }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

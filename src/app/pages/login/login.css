@@ -3,6 +3,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('https://static.truist.com/content/dam/truist-bank/us/en/images/article/mm/tax-tips-for-charitable-givers-mobile.jpg') center/cover no-repeat;
 }
 
 mat-card {

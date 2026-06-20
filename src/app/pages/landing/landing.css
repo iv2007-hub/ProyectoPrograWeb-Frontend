@@ -1,0 +1,77 @@
+:host {
+  display: block;
+}
+
+.landing-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #fffde7 0%, #ffe0b2 100%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 32px;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #e65100;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.hero {
+  text-align: center;
+  padding: 80px 32px;
+  background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
+  url('https://www.notaria230.com.mx/wp-content/uploads/2020/11/Donacion-1024x576.png') center/cover no-repeat;
+  color: white;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto 32px;
+}
+
+.about, .objetivo {
+  text-align: center;
+  padding: 60px 32px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about h2, .objetivo h2 {
+  font-size: 2rem;
+  color: #e65100;
+  margin-bottom: 16px;
+}
+
+.contact {
+  text-align: center;
+  padding: 60px 32px;
+  background: linear-gradient(135deg, #ff6f00 0%, #ffa000 100%);
+  color: white;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.contact p {
+  font-size: 1.1rem;
+  margin: 8px 0;
+}

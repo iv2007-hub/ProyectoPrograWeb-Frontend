@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Nueva Publicación</h2>
+<mat-dialog-content>
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Nombre del artículo</mat-label>
+    <input matInput [(ngModel)]="post.itemName" placeholder="Ej: Silla de madera">
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Categoría</mat-label>
+    <mat-select [(ngModel)]="post.categoryId">
+      <mat-option *ngFor="let cat of categories" [value]="cat.id">{{ cat.name }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Descripción</mat-label>
+    <textarea matInput [(ngModel)]="post.description" rows="3"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Estado del artículo</mat-label>
+    <mat-select [(ngModel)]="post.itemCondition">
+      <mat-option value="Nuevo">Nuevo</mat-option>
+      <mat-option value="Buen estado">Buen estado</mat-option>
+      <mat-option value="Uso regular">Uso regular</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" style="width:100%">
+    <mat-label>Zona de entrega</mat-label>
+    <input matInput [(ngModel)]="post.zone" placeholder="Ej: Tegucigalpa">
+  </mat-form-field>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="onCancel()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()">Publicar</button>
+</mat-dialog-actions>
