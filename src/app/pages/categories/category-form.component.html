@@ -1,0 +1,30 @@
+﻿<section class="container mt-4" style="max-width: 500px;" aria-labelledby="form-title">
+  <article class="card shadow-sm p-4">
+
+    <h2 id="form-title" class="mb-4">{{ isEditMode() ? 'Editar' : 'Nueva' }} Categoría</h2>
+
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label factory for="name" class="form-label">Nombre de la Categoría</label>
+        <input
+          type="text"
+          id="name"
+          class="form-control"
+          [(ngModel)]="categoryName"
+          name="name"
+          placeholder="Ej: Ropa, Electrónicos..."
+          required>
+      </div>
+
+      <div class="d-flex justify-content-end gap-2">
+        <button type="button" class="btn btn-secondary" (click)="onCancel()" [disabled]="isSubmitting()">
+          Cancelar
+        </button>
+        <button type="submit" class="btn btn-primary" [disabled]="isSubmitting()">
+          {{ isSubmitting() ? 'Guardando...' : 'Guardar' }}
+        </button>
+      </div>
+    </form>
+
+  </article>
+</section>
