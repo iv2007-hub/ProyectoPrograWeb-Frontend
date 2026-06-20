@@ -1,0 +1,59 @@
+<div class="container">
+  <h2>Log de Auditoría — Entregas</h2>
+
+  <div class="filter-bar">
+    <input
+      type="text"
+      placeholder="Buscar por ID de usuario..."
+      [(ngModel)]="userIdFilter"
+      (keyup.enter)="searchByUser()"
+    />
+    <button (click)="searchByUser()">Buscar</button>
+    <button (click)="loadAll()">Ver todo</button>
+  </div>
+
+  @if (loading) {
+    <p>Cargando...</p>
+  }
+
+  @if (errorMessage) {
+    <p class="error">{{ errorMessage }}</p>
+  }
+
+  @if (!loading && !errorMessage) {
+    <table>
+      <thead>
+      <tr>
+        <th>Artículo</th>
+        <th>Donante</th>
+        <th>Receptor</th>
+        <th>Fecha de entrega</th>
+        <th>Lugar</th>
+        <th>Confirmado</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (record of records; track record.id) {
+          <tr>
+            <td>{{ record.itemName }}</td>
+            <td>{{ record.donorId }}</td>
+            <td>{{ record.receiverId }}</td>
+            <td>{{ record.deliveryDate | date: 'short' }}</td>
+            <td>{{ record.deliveryLocation }}</td>
+            <td>
+              @if (record.confirmedByDonor && record.confirmedByReceiver) {
+                <span>✅</span>
+              } @else {
+                <span>⚠️</span>
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  @if (!loading && !errorMessage && records.length === 0) {
+    <p>No se encontraron entregas.</p>
+  }
+</div>

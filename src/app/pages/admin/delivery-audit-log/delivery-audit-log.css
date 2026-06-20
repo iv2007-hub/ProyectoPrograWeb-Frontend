@@ -1,0 +1,51 @@
+.container {
+  padding: 24px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.filter-bar input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  max-width: 300px;
+}
+
+.filter-bar button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: #4a5568;
+  color: white;
+  cursor: pointer;
+}
+
+.filter-bar button:hover {
+  background-color: #2d3748;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 16px;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.error {
+  color: #c0392b;
+}

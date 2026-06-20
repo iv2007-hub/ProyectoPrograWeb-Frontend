@@ -8,6 +8,7 @@ import { ExperimentsComponent } from './pages/experiments/experiments';
 import { ReceiverDashboard } from './pages/receiver/receiver-dashboard/receiver-dashboard';
 import { DonorDashboard } from './pages/donor/donor-dashboard/donor-dashboard';
 import { AdminDashboard } from './pages/admin/admin-dashboard/admin-dashboard';
+import { DeliveryAuditLog } from './pages/admin/delivery-audit-log/delivery-audit-log';
 import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
   { path: 'donor', component: DonorDashboard, canActivate: [authGuard] },
   { path: 'admin', component: AdminDashboard, canActivate: [authGuard] },
   { path: 'receiver', component: ReceiverDashboard, canActivate: [authGuard] },
+  { path: 'admin/delivery-audit-log', component: DeliveryAuditLog, canActivate: [authGuard] },
 
   // Cualquier URL que no coincida con las anteriores, redirige a /login
   { path: '**', redirectTo: '/login' },
